@@ -84,12 +84,23 @@ __kube_env_get() {
 __kube_env_config() {
   kubectl config -o template --template="{{ range .$1 }}{{ .name }} {{ end }}" view
 }
-__kube_env_ns() {
+__kube_env_ns_zsh() {
   compadd $(__kube_env_get namespaces)
 }
-__kube_env_ctx() {
+__kube_env_ctx_zsh() {
   compadd $(__kube_env_config contexts)
 }
+__kube_env_ns_bash() {
+  COMREPLY=($(__kube_env_get namespaces))
+}
+__kube_env_ctx_bash() {
+  COMREPLY=($(__kube_env_config contexts))
+}
 
-compdef __kube_env_ns kube-ns
-compdef __kube_env_ctx kube-ctx
+if [[ -s "$ZSH" ]]; then
+  compdef __kube_env_ns_zsh kube-ns
+  compdef __kube_env_ctx_zsh kube-ctx
+else
+  complete -F __kube_env_ns kube-ns
+  complete -F __kube_env_ctx kube-ctx
+fi
