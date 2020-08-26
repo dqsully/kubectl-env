@@ -1,7 +1,9 @@
 #!/bin/bash
 
-# Enable custom kube-ps1 script
-source $(dirname $0)/kube-ps1.sh
+if [[ "$1" != "--no-ps1" ]]; then
+  # Enable custom kube-ps1 script
+  source $(dirname $0)/kube-ps1.sh
+fi
 
 # Settings for kube-ps1
 KUBE_PS1_BINARY=kubectl
