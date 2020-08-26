@@ -73,10 +73,6 @@ kube-ctx() {
   KUBE_CONTEXT=$1
 }
 
-# aliases to set kubectl ENVs
-alias kns=kube-ns
-alias kctx=kube-ctx
-
 # completions for kubectl ENV cmds
 __kube_env_get() {
   kubectl get -o template --template="{{ range .items }}{{ .metadata.name }} {{ end }}" "$1"
@@ -91,16 +87,16 @@ __kube_env_ctx_zsh() {
   compadd $(__kube_env_config contexts)
 }
 __kube_env_ns_bash() {
-  COMREPLY=($(__kube_env_get namespaces))
+  COMPREPLY=($(__kube_env_get namespaces))
 }
 __kube_env_ctx_bash() {
-  COMREPLY=($(__kube_env_config contexts))
+  COMPREPLY=($(__kube_env_config contexts))
 }
 
 if [[ -s "$ZSH" ]]; then
   compdef __kube_env_ns_zsh kube-ns
   compdef __kube_env_ctx_zsh kube-ctx
 else
-  complete -F __kube_env_ns kube-ns
-  complete -F __kube_env_ctx kube-ctx
+  complete -F __kube_env_ns_bash kube-ns
+  complete -F __kube_env_ctx_bash kube-ctx
 fi
