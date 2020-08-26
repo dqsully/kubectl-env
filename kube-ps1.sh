@@ -359,3 +359,9 @@ kube_ps1() {
 
   echo "${KUBE_PS1} "
 }
+
+# Optional aliases
+if [[ $1 == "alias" ]]; then
+  alias kon=kubeon
+  alias koff=kubeoff
+fi
