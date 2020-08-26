@@ -95,7 +95,7 @@ __kube_env_ctx_bash() {
   COMPREPLY=($(__kube_env_config contexts))
 }
 
-if [[ -s "$ZSH" ]]; then
+if [[ "${ZSH_VERSION-}" ]]; then
   compdef __kube_env_ns_zsh kube-ns
   compdef __kube_env_ctx_zsh kube-ctx
 else
