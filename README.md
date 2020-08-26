@@ -15,8 +15,6 @@ this:
 source path/to/kubectl-env/init.sh
 ```
 
-And that's
-
 ### Setup your prompt (optional but highly recommended)
 kubectl-env comes prepackaged with a version of [kube-ps1] that's modified to
 understand the environment variables that kubectl-env uses. You will have to
@@ -68,10 +66,10 @@ All of the [kube-ps1] settings are 100% functional.
 
 ## Commands
 ### Command injection
-#### `kube-ctx` (alias `kctx`)
+#### `kube-ctx [context]` (alias `kctx`)
 Sets the current terminal's kubectl context.
 
-#### `kube-ns` (alias `kns`)
+#### `kube-ns [namespace]` (alias `kns`)
 Sets the current terminal's kubernetes namespace.
 
 ### kube-ps1

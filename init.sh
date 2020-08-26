@@ -6,7 +6,7 @@ if [[ -z $1 ]]; then
   # Default "smart" install
 
   if alias | grep -E "^(alias )?kgp=" >/dev/null; then
-    # Kubectl aliases not installed
+    # Kubectl aliases installed
     source $dir/kube-env.sh "alias"
     source $dir/kube-ps1.sh "alias"
   else
