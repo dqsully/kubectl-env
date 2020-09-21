@@ -45,23 +45,43 @@ skaffold() {
 
 # Functions to set kubectl ENVs
 kube-ns() {
+  if [[ "$1" == "" ]]; then
+    if [[ "$KUBE_NAMESPACE" == "" ]]; then
+      echo "No local namespace override active";
+    else
+      echo "Unset local namespace override";
+    fi
+  else
+    echo "Set local namespace override to '$1'";
+  fi
+
   KUBE_NAMESPACE=$1
 }
 
 kube-ctx() {
-  local matches=0
-
-  for context in $($KUBECTL_BINARY config get-contexts -o yaml); do
-    if [[ "$context" == "$1" ]]; then
-      matches=1
-      break
+  if [[ "$1" == "" ]]; then
+    if [[ "$KUBE_CONTEXT" == "" ]]; then
+      echo "No local context override set";
+    else
+      echo "Unset local context override";
     fi
-  done
+  else
+    local matches=0
 
-  if [[ $matches == 0 && "$1" != "" ]]; then
-    echo "'$1' is not a configured kubectl context"
-    echo "(you can list your contexts with 'kubectl config get-contexts')"
-    return 1
+    for context in $($KUBECTL_BINARY config get-contexts -o yaml); do
+      if [[ "$context" == "$1" ]]; then
+        matches=1
+        break
+      fi
+    done
+
+    if [[ $matches == 0 ]]; then
+      echo "'$1' is not a configured kubectl context"
+      echo "(you can list your contexts with 'kubectl config get-contexts')"
+      return 1
+    fi
+
+    echo "Set local context override to '$1'";
   fi
 
   KUBE_CONTEXT=$1
