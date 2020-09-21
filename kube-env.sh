@@ -58,7 +58,7 @@ kube-ctx() {
     fi
   done
 
-  if [[ $matches == 0 ]]; then
+  if [[ $matches == 0 && "$1" != "" ]]; then
     echo "'$1' is not a configured kubectl context"
     echo "(you can list your contexts with 'kubectl config get-contexts')"
     return 1
