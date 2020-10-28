@@ -28,7 +28,8 @@ else
         ;;
 
       "env+alias")
-        source $dir/kube-env.sh "alia
+        source $dir/kube-env.sh "alias"
+        ;;
 
       "ps1")
         source $dir/kube-ps1.sh
@@ -36,7 +37,6 @@ else
 
       "ps1+alias")
         source $dir/kube-ps1.sh "alias"
-        ;;s"
         ;;
     esac
   done
