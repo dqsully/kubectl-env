@@ -68,7 +68,7 @@ kube-ctx() {
   else
     local matches=0
 
-    for context in $($KUBECTL_BINARY config get-contexts -o yaml); do
+    for context in $($KUBECTL_BINARY config get-contexts -o name); do
       if [[ "$context" == "$1" ]]; then
         matches=1
         break
