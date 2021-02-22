@@ -1,6 +1,6 @@
 #!/bin/bash
 
-dir=$(dirname $_)
+dir=$(dirname "$BASH_SOURCE")
 
 if [[ -z $1 ]]; then
   # Default "smart" install
