@@ -1,6 +1,6 @@
 #!/bin/bash
 
-dir=$(dirname $0)
+dir=$(dirname $_)
 
 if [[ -z $1 ]]; then
   # Default "smart" install
@@ -19,7 +19,7 @@ else
   for arg in $@; do
     case $arg in
       "all")
-        source $dir/kube-ps1.sh
+        source $dir/kube-ps1.sh "alias"
         source $dir/kube-env.sh "alias"
         ;;
 

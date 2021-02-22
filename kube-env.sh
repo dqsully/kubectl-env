@@ -9,7 +9,7 @@ _kubectl_context() {
 
 _kubectl_namespace() {
   if [[ -n "$KUBE_NAMESPACE" ]]; then
-    echo - "-n" "$KUBE_NAMESPACE"
+    echo "--namespace" "$KUBE_NAMESPACE"
   fi
 }
 
@@ -21,7 +21,7 @@ _helm_context() {
 
 _helm_namespace() {
   if [[ -n "$KUBE_NAMESPACE" ]]; then
-    echo - "--namespace" "$KUBE_NAMESPACE"
+    echo "--namespace" "$KUBE_NAMESPACE"
   fi
 }
 
